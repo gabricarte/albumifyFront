@@ -1,0 +1,14 @@
+.home{
+    background-color: gray;
+    height: 100%;
+    text-align: center;
+}
+
+.albumsContainer{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 1rem;
+   padding: 1rem 5rem;
+   background-color: lightgrey;
+}

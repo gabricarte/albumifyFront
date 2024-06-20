@@ -1,0 +1,22 @@
+header{
+    ul{
+        height: 15vh;
+        background-color: blueviolet;
+        list-style: none;
+        justify-content: space-around;
+        display: flex;
+        align-items: center; 
+        .active{
+                font-weight: bold;
+        }
+    }
+    
+}
+
+@media screen and (max-width:767px) {
+    header{
+        ul{
+             flex-direction: column;
+        }
+    }
+}
