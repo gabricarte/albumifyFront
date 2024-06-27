@@ -1,0 +1,109 @@
+@import '../../styles/variables.scss';
+
+.search {
+  background-color: $medium;
+  background-image: url('../../images/slowdive_1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  color: white;
+
+  .division {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+  }
+
+  .formContainer {
+    padding-top: 3rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+        width: 40vw;
+    border-radius: 0.5rem;
+    align-items: center;
+
+    .albumForm {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 0;
+
+      button {
+        align-self: center;
+      }
+
+      div {
+        input {
+          width: 100%;
+          margin: 1rem;
+          background-color: $light;
+        }
+
+        label {
+          color: $light;
+        }
+      }
+    }
+  }
+
+  .searchResults {
+    padding: 1rem;
+    text-align: center;
+    width: 70vw;
+
+    button {
+      margin-top: 0.5rem;
+    }
+
+    .searchResultsContainer {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        color: $light;
+        margin: 0.5rem;
+      }
+
+      p {
+        margin: 0.5rem;
+        word-wrap: break-word; /* Quebra de palavra para evitar overflow */
+      }
+
+      ul, ol {
+        padding-left: 0;
+        margin: 0.5rem;
+        list-style-type: none;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search {
+    width: 100vw;
+    .division {
+      width: 100%;
+    }
+    .searchResults {
+      width: 100%;
+      padding: 0;
+      .searchResultsContainer {
+        overflow: auto; 
+        width: 100%; 
+        padding: 1rem; 
+      }
+    }
+  }
+}

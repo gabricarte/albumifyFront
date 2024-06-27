@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.introductionSection{
+    background-color: lightblue;
+    height: 90vh;
+    background-image: url('../../../public/led-zeppelin.jpg');
+    background-: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    display: flex;
+    justify-content: flex-end;
+
+    .introductionText{
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        color: white;
+        height: 100%;
+        width: 100%;
+        padding: 0 3rem;
+        h1{
+            padding: 1rem;
+        }
+        p{
+            padding-bottom: 1rem;
+        }
+        .introductionTextContainer{
+            padding-left: 0.5rem;
+            border-left: 5px solid $red;
+        }
+    }
+}

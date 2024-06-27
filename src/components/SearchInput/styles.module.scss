@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+
+.searchInput {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    align-items: center;
+    background-color: $dark;
+    height: 100%;
+    width: 100%;
+    .iconsContainer{
+      text-align: center;
+      padding: 5px;
+      .searchIcon{
+        padding: 5px;
+        border-radius: 0.5rem;
+        font-size: 3rem;
+        background-color: $red;
+      }
+      .closeIcon{
+        font-size: 3rem;
+        color: $light;
+    }
+  }
+  }
+  
+  .input {
+    background-color: $dark;
+    border: none;
+    color: white;
+    width: 90%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .input {
+      max-width: 100%; 
+    }
+  }
+  

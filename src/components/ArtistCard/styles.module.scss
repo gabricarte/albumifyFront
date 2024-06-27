@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.artistCard{
+    height: 32vh;
+    width: 30vw;
+    display: flex;
+
+    .textContainer{
+        padding: 1rem 0;
+        background-color: $light;
+        border-radius: 1rem;
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .imgContainer{
+        background-color: black;
+        height: 100%;
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .artistCard{
+        height: 32vh;
+        width: 80vw;
+    }
+}

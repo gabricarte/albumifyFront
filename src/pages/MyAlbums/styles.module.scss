@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.myAlbums{
+    background-color: $medium;
+    height: 100%;
+    text-align: center;
+    h1{
+        padding: 0.5rem 0;
+    }
+}

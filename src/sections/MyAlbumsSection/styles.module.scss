@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.myAlbunsSection{
+  h1{
+    color: $light;
+  }
+}
+.albumsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 5rem;
+  background-color: $medium;
+}

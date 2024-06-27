@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.topArtists{
+    text-align: center;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $dark;
+    overflow: auto;
+    h1{
+        color: white;
+    }
+    .artistsContainer{
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .topArtists{
+        .artistsContainer{
+            flex-direction: column;
+        }
+    }
+}
