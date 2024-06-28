@@ -2,7 +2,7 @@ import React from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 
 const RegisterPage: React.FC = () => {
-  const handleRegister = async (data: { username: string; email?: string; password: string }) => {
+  const handleRegister = async (data: { username: string; email?: string; password: string; imgUrl: string }) => {
     try {
       const response = await fetch('http://localhost:8080/albumify/register', {
         method: 'POST',

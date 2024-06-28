@@ -56,4 +56,8 @@ export interface ApiResponse {
     summary: string;
   }
   
-  
+  export interface ProfileProps {
+    name: string;
+    email: string;
+    imageUrl: string;
+  }

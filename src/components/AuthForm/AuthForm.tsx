@@ -6,20 +6,22 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonIcon from '@mui/icons-material/Person';
 import logo from '../../images/logo.png';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 interface AuthFormProps {
   isLogin: boolean;
-  handleSubmit: (data: { username: string; email?: string; password: string }) => Promise<void>;
+  handleSubmit: (data: { username: string; email?: string; password: string; imgUrl: string }) => Promise<void>;
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLogin, handleSubmit }) => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [imgUrl, setImgUrl] = React.useState('');
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSubmit({ username, email, password });
+    handleSubmit({ username, email, password, imgUrl });
   };
 
   return (
@@ -56,6 +58,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, handleSubmit }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             icon={LockIcon}
+          />
+          <InputField
+            id="imgUrl"
+            name="Icon URL"
+            type="imgUrl"
+            placeholder="Enter the icon url"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            icon={InsertPhotoIcon}
           />
           <button type="submit">{isLogin ? 'Sign in' : 'Register'}</button>
           <Link to={isLogin ? "/register" : "/"} style={{ textDecoration: 'none' }}>

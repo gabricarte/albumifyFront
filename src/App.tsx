@@ -5,6 +5,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MyAlbums from './pages/MyAlbums/MyAlbums';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+import Profile from './pages/Profile/Profile';
 
 
 function App() {
@@ -43,6 +44,13 @@ function App() {
         <Route path="/register" element={
           <>
           <RegisterPage/>
+          </>
+        }>
+        </Route>
+
+        <Route path="/profile" element={
+          <>
+          <Profile/>
           </>
         }>
         </Route>
