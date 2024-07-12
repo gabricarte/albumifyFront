@@ -15,19 +15,33 @@ interface InputFieldProps {
 const InputField: React.FC<InputFieldProps> = ({ id, name, type, placeholder, value, onChange, icon: Icon }) => (
   <div className={styles.formGroup}>
     <label htmlFor={id} className={styles.label}>{name}</label>
-    <div className={styles.inputContainer}>
-      <Icon className={styles.icon} />
-      <input
-        type={type}
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required
-        className={styles.input}
-      />
-    </div>
+    {type !== 'file' ? (
+      <div className={styles.inputContainer}>
+        <Icon className={styles.icon} />
+        <input
+          type={type}
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          required
+          className={styles.input}
+        />
+      </div>
+    ) : (
+      <div className={styles.fileInputContainer}>
+        <Icon className={styles.icon} />
+        <input
+          type="file"
+          id={id}
+          name={name}
+          onChange={onChange}
+          className={styles.fileInput}
+        />
+        <label htmlFor={id} className={styles.fileInputLabel}>{placeholder}</label>
+      </div>
+    )}
   </div>
 );
 

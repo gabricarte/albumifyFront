@@ -13,8 +13,11 @@ const ProfileOptions: React.FC<ProfileOptionsProps> = ({ onClose }) => {
         <li>
           <Link to="/profile">Profile</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/settings">Settings</Link>
+        </li> */}
+        <li>
+          <Link to="/myalbums">My Albums</Link>
         </li>
         <li>
           <Link to="/">Logout</Link>

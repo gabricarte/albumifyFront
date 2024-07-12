@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { onLogOut } from '../../utils/sessionStorage';
+import { getIdFromTokenOnSessionStorage, onLogOut } from '../../utils/sessionStorage';
 import logo from '../../images/logo.png';
 import styles from './styles.module.scss';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchInput from '../SearchInput/SearchInput';
-import michaelCera from '../../images/michael_cera.jpg';
-import ProfileOptions from '../ProfileOptions/ProfileOptions'; // Importa o componente ProfileOptions
+import ProfileOptions from '../ProfileOptions/ProfileOptions';
 
 const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false); // Estado para controlar a abertura do menu de perfil
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [profileImage, setProfileImage] = useState<string>('');
+
+  useEffect(() => {
+    
+    const fetchUserProfileImage = async () => {
+      try {
+        const userId = getIdFromTokenOnSessionStorage();
+        const response = await fetch(`http://localhost:8080/albumify/user-img/${userId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile image');
+        }
+        const imageBlob = await response.blob();
+        const imageUrl = URL.createObjectURL(imageBlob);
+        setProfileImage(imageUrl);
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+
+    fetchUserProfileImage();
+  }, []);
 
   const toggleSearch = () => {
     setIsSearchExpanded(!isSearchExpanded);
@@ -51,7 +71,6 @@ const Header: React.FC = () => {
         </li>
         <li className={`${(location.pathname === '/myalbums' || location.pathname === '/search') && !isSearchExpanded ? '' : styles.hidden}`}>
           <Link to="/myalbums" style={{ textDecoration: "none" }} onClick={restoreVisibility}>
-            My Albums
           </Link>
         </li>
 
@@ -66,7 +85,7 @@ const Header: React.FC = () => {
         <div className={`${styles.headerLinks} ${menuOpen ? '' : styles.hide}`}>
           <li>
             <div className={styles.profileIcon} onMouseEnter={() => setProfileMenuOpen(true)}>
-              <img src={michaelCera} alt="" className={isSearchExpanded ? styles.hidden : ''} />
+              {profileImage && <img src={profileImage} alt="Profile" className={isSearchExpanded ? styles.hidden : ''} />}
             </div>
             {profileMenuOpen && <ProfileOptions onClose={() => setProfileMenuOpen(false)} />}
           </li>

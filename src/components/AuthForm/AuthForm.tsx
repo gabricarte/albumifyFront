@@ -10,18 +10,52 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 interface AuthFormProps {
   isLogin: boolean;
-  handleSubmit: (data: { username: string; email?: string; password: string; imgUrl: string }) => Promise<void>;
+  handleSubmit: (data: { username: string; email?: string; password: string; imgUrl?: string }) => Promise<void>;
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLogin, handleSubmit }) => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [imgUrl, setImgUrl] = React.useState('');
+  const [imgFile, setImgFile] = React.useState<File | null>(null);
+  const [imgBase64, setImgBase64] = React.useState<string>('');
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSubmit({ username, email, password, imgUrl });
+
+    try {
+      const formData = new FormData();
+      formData.append('username', username);
+      if (email) {
+        formData.append('email', email);
+      }
+      formData.append('password', password);
+      if (imgBase64) {
+        formData.append('profileImageBase64', imgBase64); // Ensure the key matches what your backend expects
+      }
+
+      await handleSubmit({
+        username,
+        email,
+        password,
+        imgUrl: imgBase64 ? `data:image/jpeg;base64,${imgBase64}` : '', // Display image in UI if needed
+      });
+    } catch (error) {
+      console.error('Error: ', error);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result?.toString().split(',')[1] || '';
+        setImgBase64(base64String);
+      };
+      reader.readAsDataURL(file);
+      setImgFile(file);
+    }
   };
 
   return (
@@ -59,22 +93,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin, handleSubmit }) => {
             onChange={(e) => setPassword(e.target.value)}
             icon={LockIcon}
           />
-          <InputField
-            id="imgUrl"
-            name="Icon URL"
-            type="imgUrl"
-            placeholder="Enter the icon url"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            icon={InsertPhotoIcon}
-          />
+          {!isLogin && (
+            <InputField
+              id="imgFile"
+              name="Profile Image"
+              type="file"
+              placeholder="Choose profile image"
+              value=""
+              onChange={handleFileChange}
+              icon={InsertPhotoIcon}
+            />
+          )}
           <button type="submit">{isLogin ? 'Sign in' : 'Register'}</button>
-          <Link to={isLogin ? "/register" : "/"} style={{ textDecoration: 'none' }}>
+          <Link to={isLogin ? '/register' : '/'} style={{ textDecoration: 'none' }}>
             {isLogin ? 'Do not have an account? Register' : 'Already have an account? Login'}
           </Link>
         </form>
       </div>
-      <div className={styles.imgContainer}></div>
+      <div className={styles.imgContainer}>
+        {imgBase64 && <img src={`data:image/jpeg;base64,${imgBase64}`} alt="Preview" />}
+      </div>
     </div>
   );
 };

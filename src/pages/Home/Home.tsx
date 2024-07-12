@@ -25,7 +25,6 @@ function Home() {
 
   return (
     <div className={styles.home}>
-      <Header />
       <IntroductionSection />
       {topArtists ? (
         <TopArtistsSection artists={topArtists} />

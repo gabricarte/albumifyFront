@@ -1,11 +1,19 @@
 @import '../../styles/variables.scss';
 
-.myAlbunsSection{
-  h1{
+.myAlbumsSection {
+  h1 {
     color: $light;
   }
+
+  .myAlbumsHeader {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
-.albumsContainer{
+
+.albumsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -20,7 +20,6 @@ const Profile: React.FC = () => {
 
   return (
     <>
-    <Header/>
     <div className={styles.profileContainer}>
     <div className={styles.profile}>
       <h2>Profile</h2>

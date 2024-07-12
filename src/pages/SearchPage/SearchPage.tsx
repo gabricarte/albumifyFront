@@ -90,7 +90,6 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className={styles.search}>
-      <Header />
       <div className={styles.division}>
         <div className={styles.formContainer}>
           <h1>Search an album!</h1>
@@ -120,7 +119,7 @@ const SearchPage: React.FC = () => {
           </form>
         </div>
         <div className={styles.searchResults}>
-          {searchResults && searchResults.album && ( // Verifica se searchResults e searchResults.album são diferentes de null
+          {searchResults && searchResults.album && ( 
             <div className={styles.searchResultsContainer}>
               <h1>Search Results</h1>
               <h2>{searchResults.album.name}</h2>

@@ -35,7 +35,6 @@ function MyAlbums() {
 
   return (
     <div className={styles.myAlbums}>
-      <Header />
       <MyAlbumsSection userData={userData} />
     </div>
   );
