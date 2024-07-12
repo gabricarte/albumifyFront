@@ -37,15 +37,16 @@
   @media screen and (max-width: 768px) {
 
     .searchInput{
-      background-color: blue;
+      // background-color: blue;
+      width: 100vw;
       .iconsContainer{
         display: flex;
-        background-color: yellow;
+        // background-color: yellow;
       }
     }
     .input {
       max-width: 100%; 
-      background-color: red;
+      // background-color: red;
     }
   }
   

@@ -18,7 +18,6 @@ const Header: React.FC = () => {
   const [profileImage, setProfileImage] = useState<string>('');
 
   useEffect(() => {
-    
     const fetchUserProfileImage = async () => {
       try {
         const userId = getIdFromTokenOnSessionStorage();
@@ -85,15 +84,17 @@ const Header: React.FC = () => {
         <div className={`${styles.headerLinks} ${menuOpen ? '' : styles.hide}`}>
           <li>
             <div className={styles.profileIcon} onMouseEnter={() => setProfileMenuOpen(true)}>
-              {profileImage && <img src={profileImage} alt="Profile" className={isSearchExpanded ? styles.hidden : ''} />}
+              {profileImage && <img src={profileImage} alt="Profile" className={isSearchExpanded || menuOpen ? styles.hidden : ''} />}
             </div>
             {profileMenuOpen && <ProfileOptions onClose={() => setProfileMenuOpen(false)} />}
           </li>
         </div>
 
-        <div className={styles.responsiveNav} onClick={handleMenuClick}>
-          {menuOpen ? <CloseIcon /> : <MenuIcon />}
-        </div>
+        {!isSearchExpanded && (
+          <li onClick={handleMenuClick} className={styles.responsiveNav}>
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </li>
+        )}
       </ul>
     </header>
   );
